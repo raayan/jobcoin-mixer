@@ -1,6 +1,7 @@
 package com.raayanpillai.jobcoin.mixer.dto;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class TransactionDTO {
     private Date timestamp;
@@ -9,6 +10,13 @@ public class TransactionDTO {
     private Float amount;
 
     public TransactionDTO() {
+    }
+
+    public TransactionDTO(Date timestamp, String fromAddress, String toAddress, Float amount) {
+        this.timestamp = timestamp;
+        this.fromAddress = fromAddress;
+        this.toAddress = toAddress;
+        this.amount = amount;
     }
 
     public Date getTimestamp() {
@@ -41,5 +49,31 @@ public class TransactionDTO {
 
     public void setAmount(Float amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TransactionDTO that = (TransactionDTO) o;
+        return Objects.equals(timestamp, that.timestamp) &&
+                Objects.equals(fromAddress, that.fromAddress) &&
+                Objects.equals(toAddress, that.toAddress) &&
+                Objects.equals(amount, that.amount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(timestamp, fromAddress, toAddress, amount);
+    }
+
+    @Override
+    public String toString() {
+        return "TransactionDTO{" +
+                "timestamp=" + timestamp +
+                ", fromAddress='" + fromAddress + '\'' +
+                ", toAddress='" + toAddress + '\'' +
+                ", amount=" + amount +
+                '}';
     }
 }
