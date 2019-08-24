@@ -1,0 +1,44 @@
+sequenceDiagram
+    participant User
+    participant MixController
+    participant MixService
+    participant TaskScheduler
+    participant TASK MonitorWallet
+    participant TASK MixY
+    participant TaskQueue
+    participant JobcoinAPI
+
+    opt Startup
+        MixService->>TaskQueue: GetQueue
+        TaskQueue->>MixService: Queue
+        alt QueueNotEmpty
+            MixService->>TaskScheduler: Schedule::MixY
+            TaskScheduler->>TASK MixY: Schedule::MixY
+            activate TASK MixY
+            TASK MixY->>JobcoinAPI: Transfer::HouseToOutputY
+            TASK MixY->>TaskQueue: Dequeue::MixY
+            deactivate TASK MixY
+        end
+    end
+
+    User->>MixController: MixRequest
+    MixController->>MixService: MixInfo
+    MixController->>User: DepositAddress
+    Note over User: At this point the <br> user should deposit <br> the promised funds <br> to the provided <br> deposit address
+    MixService->>TaskScheduler: MonitorWallet
+    TaskScheduler->> TASK MonitorWallet: Schedule::MonitorWallet
+
+    activate TASK MonitorWallet
+    loop CheckFunds
+    TASK MonitorWallet->>JobcoinAPI: GetAddressInfo
+    JobcoinAPI->>TASK MonitorWallet: AddressInfo
+        alt SufficientFunds
+            TASK MonitorWallet->>MixService: Schedule::MixA-MixB
+            deactivate TASK MonitorWallet
+        end
+         Note over TASK MonitorWallet: If the balance is not <br> sufficient after Q <br> time has passed, <br> the task will stop <br> trying
+    end
+    MixService->>JobcoinAPI: Transfer::DepositToHouse
+    MixService->>TaskScheduler: Schedule::MixA
+    TaskScheduler->>TaskQueue: Queue::MixA
+    Note over TaskScheduler: Same process as <br> MixY above follows <br> for MixA to MixB
