@@ -1,32 +1,34 @@
-# jobcoin-mixer
-JC Mixer
+# Raayan Pillai Jobcoin Mixer
 
-
-## Requirements
-
+## Instructions
+### Requirements
 - Java 8
 
-This project uses Gradle as a build tool
+This project uses Gradle as a build tool.
 The gradle-wrapper.jar is distributed with this project
 
-## Installation
+### Installation
 Compile the project: 
 ```bash
 ./gradlew build
 ```
 This will compile the project and build a jar and place it in the `build` folder
 
-## Usage
+### Usage
 To start the JobCoin Mixer, run the following:
 ```bash
 ./gradlew run
 ```
-Alternatively: 
+Alternatively (given that you've built already): 
 ```bash
 java -jar ./build/libs/mixer-X.Y.Z-SNAPSHOT.jar
 ```
-This will start the application with an apache tomcat server on port 8080
 
+This will start the application on port 8080.
 
-## On Windows
-Replace all instances of `./gradlew <some-commands>` with `gradlew.bat <some-commands>`
+If using **Windows** replace all instances of `./gradlew <some-commands>` with `gradlew.bat <some-commands>`
+
+## Documentation
+
+Here is a diagram I put together that outlines the interaction between the various components of my application
+![Sequence Diagram](./docs/sequenceDiagram.svg)

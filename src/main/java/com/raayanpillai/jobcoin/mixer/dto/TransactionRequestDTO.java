@@ -1,13 +1,8 @@
 package com.raayanpillai.jobcoin.mixer.dto;
 
-import javax.validation.constraints.NotNull;
-
 public class TransactionRequestDTO {
-    @NotNull
     private String fromAddress;
-    @NotNull
     private String toAddress;
-    @NotNull
     private Float amount;
 
     public TransactionRequestDTO() {

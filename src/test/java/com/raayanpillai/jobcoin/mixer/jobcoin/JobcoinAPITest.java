@@ -1,4 +1,4 @@
-package com.raayanpillai.jobcoin.mixer.service;
+package com.raayanpillai.jobcoin.mixer.jobcoin;
 
 import com.raayanpillai.jobcoin.mixer.dto.AddressInfoDTO;
 import com.raayanpillai.jobcoin.mixer.dto.ResponseDTO;
@@ -17,10 +17,10 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class JobcoinApiTest {
+public class JobcoinAPITest {
 
     private final MockWebServer mockWebServer = new MockWebServer();
-    private final JobcoinApi jobcoinApi = new JobcoinApi(WebClient.create(mockWebServer.url("/").toString()));
+    private final JobcoinAPI jobcoinApi = new JobcoinAPI(WebClient.create(mockWebServer.url("/").toString()));
 
     @After
     public void tearDown() throws Exception {
