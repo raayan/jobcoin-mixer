@@ -1,16 +1,16 @@
 package com.raayanpillai.jobcoin.mixer.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class MixResponseDTO {
     private String depositAddress;
-    private Date expiryDate;
+    private LocalDateTime expiryDate;
 
     public MixResponseDTO() {
     }
 
-    public MixResponseDTO(String depositAddress, Date expiryDate) {
+    public MixResponseDTO(String depositAddress, LocalDateTime expiryDate) {
         this.depositAddress = depositAddress;
         this.expiryDate = expiryDate;
     }
@@ -23,11 +23,11 @@ public class MixResponseDTO {
         this.depositAddress = depositAddress;
     }
 
-    public Date getExpiryDate() {
+    public LocalDateTime getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(LocalDateTime expiryDate) {
         this.expiryDate = expiryDate;
     }
 

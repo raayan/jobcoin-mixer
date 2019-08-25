@@ -1,4 +1,4 @@
-package com.raayanpillai.jobcoin.mixer.jobcoin;
+package com.raayanpillai.jobcoin.mixer.repository;
 
 import com.raayanpillai.jobcoin.mixer.dto.AddressInfoDTO;
 import com.raayanpillai.jobcoin.mixer.dto.ResponseDTO;
@@ -20,15 +20,17 @@ import reactor.core.publisher.Mono;
 public class JobcoinAPI {
     private static final Logger logger = LoggerFactory.getLogger(JobcoinAPI.class);
 
-    private WebClient webClient;
+    private final WebClient webClient;
 
     public JobcoinAPI(WebClient webClient) {
         this.webClient = webClient;
+
+        logger.info("Started");
     }
 
     /**
      * @param address The address you want information about
-     * @return an addressDTO whether it exists or not
+     * @return details about an address
      */
     public Mono<AddressInfoDTO> getAddressInfo(Address address) {
         Mono<AddressInfoDTO> addressInfoDTOMono = webClient
@@ -57,7 +59,7 @@ public class JobcoinAPI {
     /**
      * @param fromAddress the address to withdraw from
      * @param toAddress   the address to deposit into
-     * @param amount      the amount to transfer
+     * @param amount      the amount to move
      * @return information regarding the transaction
      */
     public Mono<ResponseDTO> postTransaction(Address fromAddress, Address toAddress, Float amount) {

@@ -3,6 +3,7 @@ package com.raayanpillai.jobcoin.mixer.config;
 import com.raayanpillai.jobcoin.mixer.dto.ErrorDTO;
 import com.raayanpillai.jobcoin.mixer.exception.JobcoinRequestException;
 import com.raayanpillai.jobcoin.mixer.exception.JobcoinTransactionException;
+import com.raayanpillai.jobcoin.mixer.model.Address;
 import com.raayanpillai.jobcoin.mixer.util.AddressGenerator;
 import com.raayanpillai.jobcoin.mixer.util.JobcoinAddressGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +14,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 @Configuration
-public class JobcoinConfiguration {
+public class MixerConfig {
 
-    @Value("${jobcoin.api.uri}")
-    private String baseApi;
+    private final String houseAddressString;
+    private final String baseApi;
+    private final int addressLength;
 
-    @Value("${jobcoin.address.length}")
-    private int addressLength;
+    public MixerConfig(@Value("${mixer.house.address}") String houseAddressString,
+                       @Value("${jobcoin.api.uri}") String baseApi,
+                       @Value("${jobcoin.address.length}") int addressLength) {
+        this.houseAddressString = houseAddressString;
+        this.baseApi = baseApi;
+        this.addressLength = addressLength;
+    }
 
     /**
-     * @param webClientBuilder
      * @return a webClient configured to handle the responses the jobcoin api specifies
      */
     @Bean
@@ -47,12 +55,26 @@ public class JobcoinConfiguration {
 
 
     /**
-     * Configuring the length of generated addresses
-     *
-     * @return an address generator
+     * @return an address generator with some length
      */
     @Bean
     public AddressGenerator addressGenerator() {
         return new JobcoinAddressGenerator(addressLength);
+    }
+
+    /**
+     * @return the house address
+     */
+    @Bean
+    public Address houseAddress() {
+        return new Address(houseAddressString);
+    }
+
+    /**
+     * @return the thread scheduler
+     */
+    @Bean
+    public Scheduler scheduler() {
+        return Schedulers.elastic();
     }
 }

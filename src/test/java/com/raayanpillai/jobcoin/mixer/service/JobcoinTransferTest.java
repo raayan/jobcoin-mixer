@@ -4,8 +4,8 @@ import com.raayanpillai.jobcoin.mixer.dto.AddressInfoDTO;
 import com.raayanpillai.jobcoin.mixer.dto.ErrorDTO;
 import com.raayanpillai.jobcoin.mixer.dto.ResponseDTO;
 import com.raayanpillai.jobcoin.mixer.exception.JobcoinTransactionException;
-import com.raayanpillai.jobcoin.mixer.jobcoin.JobcoinAPI;
 import com.raayanpillai.jobcoin.mixer.model.Address;
+import com.raayanpillai.jobcoin.mixer.repository.JobcoinAPI;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,9 +24,9 @@ import static org.mockito.BDDMockito.given;
 @RunWith(SpringRunner.class)
 public class JobcoinTransferTest {
 
-    Address fromAddress;
-    Address toAddress;
-    Float amount;
+    private Address fromAddress;
+    private Address toAddress;
+    private Float amount;
 
     @MockBean
     private JobcoinAPI jobcoinAPI;
@@ -39,7 +39,7 @@ public class JobcoinTransferTest {
 
         fromAddress = new Address("fromAddress");
         toAddress = new Address("toAddress");
-        amount = 100f;
+        amount = 100F;
     }
 
     @After
@@ -47,21 +47,21 @@ public class JobcoinTransferTest {
     }
 
     @Test
-    public void transfer() {
+    public void move() {
         given(jobcoinAPI.postTransaction(any(Address.class), any(Address.class), anyFloat()))
                 .willReturn(Mono.just(new ResponseDTO("OK")));
 
-        Boolean result = jobcoinTransfer.transfer(toAddress, fromAddress, amount);
+        Boolean result = jobcoinTransfer.move(toAddress, fromAddress, amount);
 
         assertTrue(result);
     }
 
     @Test
-    public void transfer_transactionException() {
+    public void move_transactionException() {
         given(jobcoinAPI.postTransaction(any(Address.class), any(Address.class), anyFloat()))
                 .willReturn(Mono.error(new JobcoinTransactionException(new ErrorDTO("INSUFFICIENT FUNDS"))));
 
-        Boolean result = jobcoinTransfer.transfer(toAddress, fromAddress, amount);
+        Boolean result = jobcoinTransfer.move(toAddress, fromAddress, amount);
 
         assertFalse(result);
     }

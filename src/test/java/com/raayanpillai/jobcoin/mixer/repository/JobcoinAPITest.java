@@ -1,4 +1,4 @@
-package com.raayanpillai.jobcoin.mixer.jobcoin;
+package com.raayanpillai.jobcoin.mixer.repository;
 
 import com.raayanpillai.jobcoin.mixer.dto.AddressInfoDTO;
 import com.raayanpillai.jobcoin.mixer.dto.ResponseDTO;

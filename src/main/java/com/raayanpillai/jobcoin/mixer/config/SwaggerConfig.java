@@ -12,8 +12,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-    @Value("${swagger.enabled}")
-    private boolean swaggerEnabled;
+    private final boolean swaggerEnabled;
+
+    public SwaggerConfig(@Value("${swagger.enabled}") boolean swaggerEnabled) {
+        this.swaggerEnabled = swaggerEnabled;
+    }
 
     @Bean
     public Docket api() {

@@ -5,8 +5,9 @@ import com.raayanpillai.jobcoin.mixer.dto.MixRequestDTO;
 import com.raayanpillai.jobcoin.mixer.dto.MixResponseDTO;
 import com.raayanpillai.jobcoin.mixer.exception.MixRequestException;
 import com.raayanpillai.jobcoin.mixer.model.Address;
+import com.raayanpillai.jobcoin.mixer.model.DepositAddress;
 import com.raayanpillai.jobcoin.mixer.model.MixRequest;
-import com.raayanpillai.jobcoin.mixer.service.Mixer;
+import com.raayanpillai.jobcoin.mixer.service.MixerImpl;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
@@ -26,9 +27,9 @@ import java.util.stream.Collectors;
 public class MixerController {
     private static final Logger logger = LoggerFactory.getLogger(MixerController.class);
 
-    private Mixer mixer;
+    private final MixerImpl mixer;
 
-    public MixerController(Mixer mixer) {
+    public MixerController(MixerImpl mixer) {
         this.mixer = mixer;
     }
 
@@ -40,17 +41,20 @@ public class MixerController {
     public MixResponseDTO postMix(@RequestBody MixRequestDTO mixRequestDTO) throws MixRequestException {
         MixRequest mixRequest = processMixRequest(mixRequestDTO);
 
-        // TODO 2019-08-24: implement a call to the MixService
-        mixer.startMix(mixRequest);
+        DepositAddress depositAddress = mixer.createDepositAddress();
 
-        return new MixResponseDTO();
+        mixer.monitorDeposit(mixRequest, depositAddress);
+
+        logger.info("Generated for user {}", depositAddress);
+
+        return new MixResponseDTO(depositAddress.getAddress(), depositAddress.getExpiryDate());
     }
 
     private MixRequest processMixRequest(MixRequestDTO mixRequestDTO) throws MixRequestException {
         MultiValueMap<String, String> errorMap = new LinkedMultiValueMap<>();
         if (mixRequestDTO != null) {
             if (mixRequestDTO.getAmount() == null || mixRequestDTO.getAmount() <= 0) {
-                errorMap.add("amount", "MixRequest amount must be more than 0");
+                errorMap.add("amount", "Mix amount must be more than 0");
             }
             if (mixRequestDTO.getDestinations() == null || mixRequestDTO.getDestinations().isEmpty()) {
                 errorMap.add("destinations", "You must specify at least 1 destination address");

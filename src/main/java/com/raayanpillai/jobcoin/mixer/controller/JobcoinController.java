@@ -1,8 +1,8 @@
 package com.raayanpillai.jobcoin.mixer.controller;
 
 import com.raayanpillai.jobcoin.mixer.dto.*;
-import com.raayanpillai.jobcoin.mixer.jobcoin.JobcoinAPI;
 import com.raayanpillai.jobcoin.mixer.model.Address;
+import com.raayanpillai.jobcoin.mixer.repository.JobcoinAPI;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class JobcoinController {
     private static final Logger logger = LoggerFactory.getLogger(JobcoinController.class);
 
-    private JobcoinAPI jobcoinApi;
+    private final JobcoinAPI jobcoinApi;
 
     public JobcoinController(JobcoinAPI jobcoinApi) {
         this.jobcoinApi = jobcoinApi;
