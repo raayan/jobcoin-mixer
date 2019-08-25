@@ -1,4 +1,4 @@
-package com.raayanpillai.jobcoin.mixer.transfer;
+package com.raayanpillai.jobcoin.mixer.service;
 
 
 import com.raayanpillai.jobcoin.mixer.model.Address;

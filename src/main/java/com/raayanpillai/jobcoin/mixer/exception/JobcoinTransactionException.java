@@ -1,4 +1,4 @@
-package com.raayanpillai.jobcoin.mixer.jobcoin;
+package com.raayanpillai.jobcoin.mixer.exception;
 
 import com.raayanpillai.jobcoin.mixer.dto.ErrorDTO;
 

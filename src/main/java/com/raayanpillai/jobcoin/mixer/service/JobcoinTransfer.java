@@ -1,18 +1,18 @@
-package com.raayanpillai.jobcoin.mixer.transfer;
+package com.raayanpillai.jobcoin.mixer.service;
 
 import com.raayanpillai.jobcoin.mixer.dto.AddressInfoDTO;
 import com.raayanpillai.jobcoin.mixer.dto.ResponseDTO;
+import com.raayanpillai.jobcoin.mixer.exception.JobcoinException;
 import com.raayanpillai.jobcoin.mixer.jobcoin.JobcoinAPI;
-import com.raayanpillai.jobcoin.mixer.jobcoin.JobcoinException;
 import com.raayanpillai.jobcoin.mixer.model.Address;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
-@Repository
+@Service
 public class JobcoinTransfer implements Transfer {
     private static final Logger logger = LoggerFactory.getLogger(JobcoinTransfer.class);
 

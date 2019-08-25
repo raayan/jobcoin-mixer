@@ -1,10 +1,10 @@
-package com.raayanpillai.jobcoin.mixer.transfer;
+package com.raayanpillai.jobcoin.mixer.service;
 
 import com.raayanpillai.jobcoin.mixer.dto.AddressInfoDTO;
 import com.raayanpillai.jobcoin.mixer.dto.ErrorDTO;
 import com.raayanpillai.jobcoin.mixer.dto.ResponseDTO;
+import com.raayanpillai.jobcoin.mixer.exception.JobcoinTransactionException;
 import com.raayanpillai.jobcoin.mixer.jobcoin.JobcoinAPI;
-import com.raayanpillai.jobcoin.mixer.jobcoin.JobcoinTransactionException;
 import com.raayanpillai.jobcoin.mixer.model.Address;
 import org.junit.After;
 import org.junit.Before;

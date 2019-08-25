@@ -1,6 +1,6 @@
 package com.raayanpillai.jobcoin.mixer.service;
 
-import com.raayanpillai.jobcoin.mixer.transfer.Transfer;
+import com.raayanpillai.jobcoin.mixer.model.MixRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -10,13 +10,18 @@ import org.springframework.stereotype.Service;
  * and executing those mixes
  */
 @Service
-public class MixService {
-    private static final Logger logger = LoggerFactory.getLogger(MixService.class);
+public class Mixer {
+    private static final Logger logger = LoggerFactory.getLogger(Mixer.class);
 
     private Transfer transfer;
 
-    public MixService(Transfer transfer) {
+    public Mixer(Transfer transfer) {
         this.transfer = transfer;
+    }
+
+    public void startMix(MixRequest mixRequest) {
+        logger.info("MixRequest: {}", mixRequest);
+
     }
 
 

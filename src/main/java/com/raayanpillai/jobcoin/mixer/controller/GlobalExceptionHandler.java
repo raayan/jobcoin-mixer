@@ -1,8 +1,9 @@
 package com.raayanpillai.jobcoin.mixer.controller;
 
 import com.raayanpillai.jobcoin.mixer.dto.ErrorDTO;
-import com.raayanpillai.jobcoin.mixer.jobcoin.JobcoinRequestException;
-import com.raayanpillai.jobcoin.mixer.jobcoin.JobcoinTransactionException;
+import com.raayanpillai.jobcoin.mixer.exception.JobcoinRequestException;
+import com.raayanpillai.jobcoin.mixer.exception.JobcoinTransactionException;
+import com.raayanpillai.jobcoin.mixer.exception.MixRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(JobcoinRequestException.class)
     public ResponseEntity<ErrorDTO> handleException(JobcoinRequestException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(e.getErrorDTO());
+    }
+
+    @ExceptionHandler(MixRequestException.class)
+    public ResponseEntity<ErrorDTO> handleException(MixRequestException e) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(e.getErrorDTO());

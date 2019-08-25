@@ -13,4 +13,8 @@ public class MixerApplicationTests {
     public void contextLoads() {
     }
 
+    @Test
+    public void main() {
+        MixerApplication.main(new String[0]);
+    }
 }

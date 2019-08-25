@@ -6,7 +6,7 @@ import com.raayanpillai.jobcoin.mixer.dto.TransactionDTO;
 import com.raayanpillai.jobcoin.mixer.model.Address;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
  * This is a wrapper around the provided Jobcoin API, this service could be
  * switched out for something that interfaces with other transaction networks (cryptocurrencies...)
  */
-@Component
+@Repository
 public class JobcoinAPI {
     private static final Logger logger = LoggerFactory.getLogger(JobcoinAPI.class);
 
@@ -61,10 +61,10 @@ public class JobcoinAPI {
      * @return information regarding the transaction
      */
     public Mono<ResponseDTO> postTransaction(Address fromAddress, Address toAddress, Float amount) {
-        MultiValueMap<String, Object> parameters = new LinkedMultiValueMap<>();
+        MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("fromAddress", fromAddress.getAddress());
         parameters.add("toAddress", toAddress.getAddress());
-        parameters.add("amount", amount);
+        parameters.add("amount", String.valueOf(amount));
 
         Mono<ResponseDTO> responseDTOMono = webClient
                 .post()

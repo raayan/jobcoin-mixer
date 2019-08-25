@@ -1,8 +1,10 @@
 package com.raayanpillai.jobcoin.mixer.config;
 
 import com.raayanpillai.jobcoin.mixer.dto.ErrorDTO;
-import com.raayanpillai.jobcoin.mixer.jobcoin.JobcoinRequestException;
-import com.raayanpillai.jobcoin.mixer.jobcoin.JobcoinTransactionException;
+import com.raayanpillai.jobcoin.mixer.exception.JobcoinRequestException;
+import com.raayanpillai.jobcoin.mixer.exception.JobcoinTransactionException;
+import com.raayanpillai.jobcoin.mixer.util.AddressGenerator;
+import com.raayanpillai.jobcoin.mixer.util.JobcoinAddressGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +18,10 @@ import reactor.core.publisher.Mono;
 public class JobcoinConfiguration {
 
     @Value("${jobcoin.api.uri}")
-    private String jobcoinApi;
+    private String baseApi;
+
+    @Value("${jobcoin.address.length}")
+    private int addressLength;
 
     /**
      * @param webClientBuilder
@@ -25,7 +30,7 @@ public class JobcoinConfiguration {
     @Bean
     public WebClient webClient(@Autowired WebClient.Builder webClientBuilder) {
         return webClientBuilder
-                .baseUrl(jobcoinApi)
+                .baseUrl(baseApi)
                 .filter(ExchangeFilterFunction.ofResponseProcessor(clientResponse -> {
                     if (clientResponse.statusCode().isError()) {
                         if (clientResponse.statusCode() == HttpStatus.UNPROCESSABLE_ENTITY) {
@@ -38,5 +43,16 @@ public class JobcoinConfiguration {
                     return Mono.just(clientResponse);
                 }))
                 .build();
+    }
+
+
+    /**
+     * Configuring the length of generated addresses
+     *
+     * @return an address generator
+     */
+    @Bean
+    public AddressGenerator addressGenerator() {
+        return new JobcoinAddressGenerator(addressLength);
     }
 }
