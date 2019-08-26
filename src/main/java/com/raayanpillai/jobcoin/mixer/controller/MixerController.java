@@ -7,7 +7,7 @@ import com.raayanpillai.jobcoin.mixer.exception.MixRequestException;
 import com.raayanpillai.jobcoin.mixer.model.Address;
 import com.raayanpillai.jobcoin.mixer.model.DepositAddress;
 import com.raayanpillai.jobcoin.mixer.model.MixRequest;
-import com.raayanpillai.jobcoin.mixer.service.MixerImpl;
+import com.raayanpillai.jobcoin.mixer.service.Mixer;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 public class MixerController {
     private static final Logger logger = LoggerFactory.getLogger(MixerController.class);
 
-    private final MixerImpl mixer;
+    private final Mixer mixer;
 
-    public MixerController(MixerImpl mixer) {
+    public MixerController(Mixer mixer) {
         this.mixer = mixer;
     }
 
@@ -50,7 +50,7 @@ public class MixerController {
         return new MixResponseDTO(depositAddress.getAddress(), depositAddress.getExpiryDate());
     }
 
-    private MixRequest processMixRequest(MixRequestDTO mixRequestDTO) throws MixRequestException {
+    protected MixRequest processMixRequest(MixRequestDTO mixRequestDTO) throws MixRequestException {
         MultiValueMap<String, String> errorMap = new LinkedMultiValueMap<>();
         if (mixRequestDTO != null) {
             if (mixRequestDTO.getAmount() == null || mixRequestDTO.getAmount() <= 0) {
@@ -66,6 +66,7 @@ public class MixerController {
             throw new MixRequestException(new ErrorDTO(errorMap));
         }
 
+        assert mixRequestDTO != null;
         Float amountToMix = mixRequestDTO.getAmount();
         List<Address> destinationAddresses = mixRequestDTO.getDestinations()
                 .stream().map(Address::new).collect(Collectors.toList());

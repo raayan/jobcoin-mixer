@@ -3,12 +3,12 @@ package com.raayanpillai.jobcoin.mixer.exception;
 import com.raayanpillai.jobcoin.mixer.dto.ErrorDTO;
 
 /**
- * Thrown when the user makes a bad mix request
+ * Thrown when the transfer fails to move funds
  */
-public class MixRequestException extends MixException {
+public class MixTransferException extends MixException {
     private ErrorDTO errorDTO;
 
-    public MixRequestException(ErrorDTO errorDTO) {
+    public MixTransferException(ErrorDTO errorDTO) {
         super(null);
         this.errorDTO = errorDTO;
     }

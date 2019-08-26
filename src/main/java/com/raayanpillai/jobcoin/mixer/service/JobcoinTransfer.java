@@ -1,9 +1,12 @@
 package com.raayanpillai.jobcoin.mixer.service;
 
 import com.raayanpillai.jobcoin.mixer.dto.AddressInfoDTO;
+import com.raayanpillai.jobcoin.mixer.dto.ErrorDTO;
 import com.raayanpillai.jobcoin.mixer.dto.ResponseDTO;
 import com.raayanpillai.jobcoin.mixer.exception.JobcoinException;
+import com.raayanpillai.jobcoin.mixer.exception.MixTransferException;
 import com.raayanpillai.jobcoin.mixer.model.Address;
+import com.raayanpillai.jobcoin.mixer.model.Transaction;
 import com.raayanpillai.jobcoin.mixer.repository.JobcoinAPI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,14 +33,15 @@ public class JobcoinTransfer implements Transfer {
      * Uses the jobcoin api to make a transaction
      * in a thread blocking fashion
      *
-     * @param fromAddress address to take from
-     * @param toAddress   address to send to
-     * @param amount      amount to send
+     * @param transaction
      * @return true if the transaction completed, false otherwise
      */
     @Override
-    public Boolean move(Address fromAddress, Address toAddress, Float amount) {
-        Mono<ResponseDTO> responseDTOMono = jobcoinAPI.postTransaction(fromAddress, toAddress, amount);
+    public Boolean move(Transaction transaction) {
+        Mono<ResponseDTO> responseDTOMono = jobcoinAPI.postTransaction(
+                transaction.getFromAddress(),
+                transaction.getToAddress(),
+                transaction.getAmount());
 
         Optional<ResponseDTO> optionalResponseDTO = responseDTOMono
                 .onErrorResume(JobcoinException.class, e -> Mono.empty())
@@ -74,32 +78,30 @@ public class JobcoinTransfer implements Transfer {
 
     /**
      * This is a non-blocking method that will watch a wallet for non-zero balance
-     * and move its jobcoins to another wallet
+     * and move its jobcoins to another wallet, if push an error
      *
-     * @param fromAddress      address to watch
-     * @param toAddress        address to move to
-     * @param watchAmount      amount to watch for
+     * @param transaction
      * @param intervalDuration how often to check the wallet
      * @param watchDuration    the total time to check the wallet for
      */
     @Override
-    public Flux<ResponseDTO> watchAndMove(Address fromAddress, Address toAddress, Float watchAmount,
-                                          Duration intervalDuration, Duration watchDuration) {
-        return Flux.interval(Duration.ofSeconds(1))
+    public Flux<ResponseDTO> watchAndMove(Transaction transaction, Duration intervalDuration,
+                                          Duration watchDuration) {
+        return Flux.interval(intervalDuration)
                 .take(watchDuration)
-                .flatMap(aLong -> jobcoinAPI.getAddressInfo(fromAddress))
+                .flatMap(aLong -> jobcoinAPI.getAddressInfo(transaction.getFromAddress()))
                 // Take until balance is sufficient
-                .takeUntil(addressInfoDTO -> addressInfoDTO.getBalance() >= watchAmount)
+                .takeUntil(addressInfoDTO -> addressInfoDTO.getBalance() >= transaction.getAmount())
                 // Map a present balance
                 .flatMap(addressInfoDTO -> {
-                    if (addressInfoDTO.getBalance() >= watchAmount) {
+                    if (addressInfoDTO.getBalance() >= transaction.getAmount()) {
                         logger.info("Balance Present {}", addressInfoDTO);
                         return jobcoinAPI
-                                .postTransaction(fromAddress, toAddress, addressInfoDTO.getBalance())
-                                .onErrorResume(JobcoinException.class, e -> Mono.empty());
+                                .postTransaction(transaction.getFromAddress(),
+                                        transaction.getToAddress(), addressInfoDTO.getBalance());
                     }
                     logger.info("Balance {}", addressInfoDTO);
                     return Mono.empty();
-                });
+                }).switchIfEmpty(s -> s.onError(new MixTransferException(new ErrorDTO("Balance insufficient"))));
     }
 }

@@ -1,6 +1,7 @@
 package com.raayanpillai.jobcoin.mixer.service;
 
 import com.raayanpillai.jobcoin.mixer.model.Address;
+import com.raayanpillai.jobcoin.mixer.model.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,7 +42,7 @@ public class ExecutorImpl implements Executor {
         logger.info("Scheduling Transfer {} from house to {} in {} second(s)", amount, toAddress.getAddress(), delay);
         worker.schedule(() -> {
             logger.info("Transferring {} from house to {}", amount, toAddress.getAddress());
-            transfer.move(houseAddress, toAddress, amount);
+            transfer.move(new Transaction(houseAddress, toAddress, amount));
         }, delay, TimeUnit.SECONDS);
     }
 }

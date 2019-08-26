@@ -1,6 +1,7 @@
 package com.raayanpillai.jobcoin.mixer.service;
 
 import com.raayanpillai.jobcoin.mixer.model.Address;
+import com.raayanpillai.jobcoin.mixer.model.Transaction;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +12,6 @@ import reactor.test.scheduler.VirtualTimeScheduler;
 import java.time.Duration;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyFloat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
@@ -32,15 +32,14 @@ public class ExecutorImplTest {
     public void setUp() throws Exception {
         virtualTimeScheduler = VirtualTimeScheduler.create();
         houseAddress = new Address("testHouse");
-        minDelay = 0;
-        maxDelay = 10;
+        minDelay = 10;
+        maxDelay = 20;
         executor = new ExecutorImpl(transfer, virtualTimeScheduler, houseAddress, minDelay, maxDelay);
     }
 
     @Test
     public void scheduleWithdrawal_maxDelay_transferAttempted() {
-        given(transfer.move(any(Address.class), any(Address.class), anyFloat()))
-                .willReturn(true);
+        given(transfer.move(any(Transaction.class))).willReturn(true);
 
         Float amount = 100F;
         Address destinationAddress = new Address("testOutput");
@@ -49,17 +48,17 @@ public class ExecutorImplTest {
 
         virtualTimeScheduler.advanceTimeBy(Duration.ofSeconds(maxDelay));
 
-        then(transfer).should().move(any(Address.class), any(Address.class), anyFloat());
+        then(transfer).should().move(any(Transaction.class));
     }
 
     @Test
     public void scheduleWithdrawal_minDelay_noInteraction() {
-        given(transfer.move(any(Address.class), any(Address.class), anyFloat()))
+        given(transfer.move(any(Transaction.class)))
                 .willReturn(true);
 
         executor.scheduleWithdrawal(new Address("testOutput"), 100F);
 
-        virtualTimeScheduler.advanceTimeBy(Duration.ofSeconds(minDelay));
+        virtualTimeScheduler.advanceTimeBy(Duration.ofSeconds(minDelay - 1));
 
         then(transfer).shouldHaveZeroInteractions();
     }

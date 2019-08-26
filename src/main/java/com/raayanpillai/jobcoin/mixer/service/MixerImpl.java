@@ -3,6 +3,7 @@ package com.raayanpillai.jobcoin.mixer.service;
 import com.raayanpillai.jobcoin.mixer.model.Address;
 import com.raayanpillai.jobcoin.mixer.model.DepositAddress;
 import com.raayanpillai.jobcoin.mixer.model.MixRequest;
+import com.raayanpillai.jobcoin.mixer.model.Transaction;
 import com.raayanpillai.jobcoin.mixer.util.AddressGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,12 +51,15 @@ public class MixerImpl implements Mixer {
     public void monitorDeposit(MixRequest mixRequest, DepositAddress depositAddress) {
         // Compute duration between now and when the depositAddress expires
         Duration watchDuration = Duration.between(LocalDateTime.now(), depositAddress.getExpiryDate());
+        Transaction transaction = new Transaction(houseAddress, depositAddress, mixRequest.getAmount());
 
         logger.info("Checking {} for {} seconds", depositAddress, watchDuration.getSeconds());
-        transfer.watchAndMove(depositAddress, houseAddress, mixRequest.getAmount(), Duration.ofSeconds(1), watchDuration)
+        transfer.watchAndMove(transaction, Duration.ofSeconds(1), watchDuration)
                 .subscribe(responseDTO -> {
-                    logger.info("Transferring all from {} to {}", depositAddress, houseAddress);
+                    logger.info("Funds moved from {} to {}", depositAddress, houseAddress);
                     executeMix(mixRequest);
+                }, e -> {
+                    logger.error("Funds not received {}", depositAddress, e);
                 });
     }
 
