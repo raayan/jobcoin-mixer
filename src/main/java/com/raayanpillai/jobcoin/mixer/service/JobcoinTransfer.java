@@ -29,7 +29,7 @@ public class JobcoinTransfer implements Transfer {
      * Uses the jobcoin api to make a transaction
      * in a thread blocking fashion
      *
-     * @param transaction
+     * @param transaction the transaction to transact
      * @return true if the transaction completed, false otherwise
      */
     @Override
@@ -50,7 +50,7 @@ public class JobcoinTransfer implements Transfer {
      * This is a non-blocking method that will watch a wallet for non-zero balance
      * and transact its jobcoins to another wallet, if push an error
      *
-     * @param transaction
+     * @param transaction the transaction to execute after watching
      * @param intervalDuration how often to check the wallet
      * @param watchDuration    the total time to check the wallet for
      */
@@ -68,7 +68,6 @@ public class JobcoinTransfer implements Transfer {
                         logger.info("Balance Present {}", balance);
                         return jobcoinExchange.submitTransaction(transaction);
                     }
-                    logger.info("Balance {}", balance);
                     return Mono.empty();
                 })
                 .switchIfEmpty(s -> s.onError(new MixTransferException(new ErrorDTO("Balance insufficient"))));

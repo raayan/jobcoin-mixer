@@ -43,10 +43,11 @@ public class MixerController {
 
         DepositAddress depositAddress = mixer.createDepositAddress();
 
-        mixer.monitorDeposit(mixRequest, depositAddress);
+        mixer.monitorDeposit(mixRequest, depositAddress).subscribe(success ->
+                        logger.info("Done {} {} {}", success, mixRequest, depositAddress),
+                e -> logger.error("Funds not received, mix did not execute"));
 
         logger.info("Generated for user {}", depositAddress);
-
         return new MixResponseDTO(depositAddress.getAddress(), depositAddress.getExpiryDate());
     }
 

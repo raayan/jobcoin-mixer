@@ -42,7 +42,7 @@ public class MixerImplTest {
     private MixerImpl mixer;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         houseAddress = new Address("testHouse");
         expiresInSeconds = 60;
 
@@ -71,7 +71,7 @@ public class MixerImplTest {
         given(transfer.watchAndTransact(any(Transaction.class), any(Duration.class), any(Duration.class)))
                 .willReturn(Flux.just(true));
 
-        mixer.monitorDeposit(mixRequest, depositAddress);
+        mixer.monitorDeposit(mixRequest, depositAddress).blockLast();
 
         then(executor).should(times(1)).scheduleTransaction(any(Transaction.class));
     }
@@ -85,7 +85,7 @@ public class MixerImplTest {
         given(transfer.watchAndTransact(any(Transaction.class), any(Duration.class), any(Duration.class)))
                 .willReturn(Flux.error(new MixTransferException(new ErrorDTO("Balance insufficient"))));
 
-        mixer.monitorDeposit(mixRequest, depositAddress);
+        mixer.monitorDeposit(mixRequest, depositAddress).blockLast();
 
         then(executor).shouldHaveZeroInteractions();
     }

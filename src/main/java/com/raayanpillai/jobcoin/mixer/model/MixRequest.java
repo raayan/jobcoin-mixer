@@ -5,19 +5,19 @@ import java.util.Objects;
 
 public class MixRequest {
     private Float amount;
-    private List<Address> destinationAddresses;
+    private List<Address> destinations;
 
-    public MixRequest(Float amount, List<Address> destinationAddresses) {
+    public MixRequest(Float amount, List<Address> destinations) {
         this.amount = amount;
-        this.destinationAddresses = destinationAddresses;
+        this.destinations = destinations;
     }
 
     public Float getAmount() {
         return amount;
     }
 
-    public List<Address> getDestinationAddresses() {
-        return destinationAddresses;
+    public List<Address> getDestinations() {
+        return destinations;
     }
 
     @Override
@@ -26,19 +26,19 @@ public class MixRequest {
         if (o == null || getClass() != o.getClass()) return false;
         MixRequest that = (MixRequest) o;
         return Objects.equals(amount, that.amount) &&
-                Objects.equals(destinationAddresses, that.destinationAddresses);
+                Objects.equals(destinations, that.destinations);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(amount, destinationAddresses);
+        return Objects.hash(amount, destinations);
     }
 
     @Override
     public String toString() {
         return "MixRequest{" +
                 "amount=" + amount +
-                ", destinationAddresses=" + destinationAddresses +
+                ", destinations=" + destinations +
                 '}';
     }
 }

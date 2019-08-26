@@ -25,8 +25,7 @@ public class JobcoinExchange implements Exchange {
     }
 
     public Mono<Float> getBalance(Address address) {
-        return jobcoinAPI.getAddressInfo(address)
-                .map(AddressInfoDTO::getBalance);
+        return jobcoinAPI.getAddressInfo(address).map(AddressInfoDTO::getBalance);
     }
 
 

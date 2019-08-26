@@ -32,7 +32,7 @@ public class ExecutorImpl implements Executor {
     /**
      * Schedules a transaction to be executed in the future
      *
-     * @param transaction
+     * @param transaction the transaction to execute
      */
     @Override
     public void scheduleTransaction(Transaction transaction) {
@@ -43,8 +43,11 @@ public class ExecutorImpl implements Executor {
 
         logger.info("Scheduling {} in {} second(s)", transaction, delay);
         worker.schedule(() -> {
-            logger.info("Executing {}", transaction);
-            transfer.transact(transaction);
+            if (transfer.transact(transaction)) {
+                logger.info("Executed {}", transaction);
+            } else {
+                logger.info("Failed to execute {}", transaction);
+            }
         }, delay, TimeUnit.SECONDS);
     }
 }
