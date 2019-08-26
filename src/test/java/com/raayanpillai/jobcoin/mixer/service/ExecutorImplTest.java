@@ -19,7 +19,6 @@ import static org.mockito.BDDMockito.then;
 public class ExecutorImplTest {
 
     private VirtualTimeScheduler virtualTimeScheduler;
-    private Address houseAddress;
     private long minDelay;
     private long maxDelay;
 
@@ -31,32 +30,32 @@ public class ExecutorImplTest {
     @Before
     public void setUp() throws Exception {
         virtualTimeScheduler = VirtualTimeScheduler.create();
-        houseAddress = new Address("testHouse");
         minDelay = 10;
         maxDelay = 20;
-        executor = new ExecutorImpl(transfer, virtualTimeScheduler, houseAddress, minDelay, maxDelay);
+        executor = new ExecutorImpl(transfer, virtualTimeScheduler, minDelay, maxDelay);
     }
 
     @Test
     public void scheduleWithdrawal_maxDelay_transferAttempted() {
-        given(transfer.move(any(Transaction.class))).willReturn(true);
+        given(transfer.transact(any(Transaction.class))).willReturn(true);
 
-        Float amount = 100F;
-        Address destinationAddress = new Address("testOutput");
+        Transaction transaction = new Transaction(new Address("testOutput"), new Address("testHouse"), 100f);
 
-        executor.scheduleWithdrawal(destinationAddress, amount);
+        executor.scheduleTransaction(transaction);
 
         virtualTimeScheduler.advanceTimeBy(Duration.ofSeconds(maxDelay));
 
-        then(transfer).should().move(any(Transaction.class));
+        then(transfer).should().transact(any(Transaction.class));
     }
 
     @Test
     public void scheduleWithdrawal_minDelay_noInteraction() {
-        given(transfer.move(any(Transaction.class)))
+        given(transfer.transact(any(Transaction.class)))
                 .willReturn(true);
 
-        executor.scheduleWithdrawal(new Address("testOutput"), 100F);
+        Transaction transaction = new Transaction(new Address("testOutput"), new Address("testHouse"), 100f);
+
+        executor.scheduleTransaction(transaction);
 
         virtualTimeScheduler.advanceTimeBy(Duration.ofSeconds(minDelay - 1));
 

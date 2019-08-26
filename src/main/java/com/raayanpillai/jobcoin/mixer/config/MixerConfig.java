@@ -6,7 +6,6 @@ import com.raayanpillai.jobcoin.mixer.exception.JobcoinTransactionException;
 import com.raayanpillai.jobcoin.mixer.model.Address;
 import com.raayanpillai.jobcoin.mixer.util.AddressGenerator;
 import com.raayanpillai.jobcoin.mixer.util.JobcoinAddressGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,38 +20,13 @@ import reactor.core.scheduler.Schedulers;
 public class MixerConfig {
 
     private final String houseAddressString;
-    private final String baseApi;
     private final int addressLength;
 
     public MixerConfig(@Value("${mixer.house.address}") String houseAddressString,
-                       @Value("${jobcoin.api.uri}") String baseApi,
-                       @Value("${jobcoin.address.length}") int addressLength) {
+                       @Value("${mixer.address.length}") int addressLength) {
         this.houseAddressString = houseAddressString;
-        this.baseApi = baseApi;
         this.addressLength = addressLength;
     }
-
-    /**
-     * @return a webClient configured to handle the responses the jobcoin api specifies
-     */
-    @Bean
-    public WebClient webClient(@Autowired WebClient.Builder webClientBuilder) {
-        return webClientBuilder
-                .baseUrl(baseApi)
-                .filter(ExchangeFilterFunction.ofResponseProcessor(clientResponse -> {
-                    if (clientResponse.statusCode().isError()) {
-                        if (clientResponse.statusCode() == HttpStatus.UNPROCESSABLE_ENTITY) {
-                            return clientResponse.bodyToMono(ErrorDTO.class).flatMap(errorDetails ->
-                                    Mono.error(new JobcoinTransactionException(errorDetails)));
-                        }
-                        return clientResponse.bodyToMono(ErrorDTO.class).flatMap(errorDetails ->
-                                Mono.error(new JobcoinRequestException(errorDetails)));
-                    }
-                    return Mono.just(clientResponse);
-                }))
-                .build();
-    }
-
 
     /**
      * @return an address generator with some length
@@ -76,5 +50,22 @@ public class MixerConfig {
     @Bean
     public Scheduler scheduler() {
         return Schedulers.elastic();
+    }
+
+    @Bean
+    public WebClient webClient(WebClient.Builder webClientBuilder, @Value("${jobcoin.api.uri}") String baseApi) {
+        return webClientBuilder.baseUrl(baseApi)
+                .filter(ExchangeFilterFunction.ofResponseProcessor(clientResponse -> {
+                    if (clientResponse.statusCode().isError()) {
+                        if (clientResponse.statusCode() == HttpStatus.UNPROCESSABLE_ENTITY) {
+                            return clientResponse.bodyToMono(ErrorDTO.class).flatMap(errorDetails ->
+                                    Mono.error(new JobcoinTransactionException(errorDetails)));
+                        }
+                        return clientResponse.bodyToMono(ErrorDTO.class).flatMap(errorDetails ->
+                                Mono.error(new JobcoinRequestException(errorDetails)));
+                    }
+                    return Mono.just(clientResponse);
+                }))
+                .build();
     }
 }

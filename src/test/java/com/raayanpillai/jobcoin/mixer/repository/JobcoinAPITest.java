@@ -4,19 +4,24 @@ import com.raayanpillai.jobcoin.mixer.dto.AddressInfoDTO;
 import com.raayanpillai.jobcoin.mixer.dto.ResponseDTO;
 import com.raayanpillai.jobcoin.mixer.dto.TransactionDTO;
 import com.raayanpillai.jobcoin.mixer.model.Address;
+import com.raayanpillai.jobcoin.mixer.model.Transaction;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+@RunWith(SpringRunner.class)
 public class JobcoinAPITest {
 
     private final MockWebServer mockWebServer = new MockWebServer();
@@ -52,7 +57,7 @@ public class JobcoinAPITest {
     }
 
     @Test
-    public void getTransactions() {
+    public void getTransactions_all_list() {
         List<TransactionDTO> expectedTransactions = Arrays.asList(
                 new TransactionDTO(null, "fromTest", "toTest", 50f),
                 new TransactionDTO(null, "toTest", "fromTest", 50f));
@@ -65,14 +70,30 @@ public class JobcoinAPITest {
                         .setBody("[{\"timestamp\":\"null\",\"fromAddress\": \"fromTest\",\"toAddress\":\"toTest\",\"amount\":50.0},{\"timestamp\":\"null\",\"fromAddress\": \"toTest\",\"toAddress\":\"fromTest\",\"amount\":50.0}]")
         );
 
-        List<TransactionDTO> transactions = Arrays.asList(jobcoinApi.getTransactions().block());
+        List<TransactionDTO> transactions = jobcoinApi.getTransactions().collectList().block();
 
         assertEquals(expectedTransactions, transactions);
     }
 
     @Test
+    public void getTransactions_just2_list() {
+        mockWebServer.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .setBody("[{\"timestamp\":\"null\",\"fromAddress\": \"fromTest\",\"toAddress\":\"toTest\",\"amount\":50.0},{\"timestamp\":\"null\",\"fromAddress\": \"toTest\",\"toAddress\":\"fromTest\",\"amount\":50.0}]")
+        );
+
+        List<TransactionDTO> transactions = jobcoinApi.getTransactions().take(1).collectList().block();
+
+        assertNotNull(transactions);
+        assertEquals(1, transactions.size());
+    }
+
+    @Test
     public void postTransaction() {
         ResponseDTO expectedResponse = new ResponseDTO("OK");
+        Transaction transaction = new Transaction(new Address("fromAddress"), new Address("toAddress"), 10f);
 
         mockWebServer.enqueue(
                 new MockResponse()
@@ -81,17 +102,15 @@ public class JobcoinAPITest {
                         .setBody("{\"status\": \"OK\"}")
         );
 
-        ResponseDTO response = jobcoinApi.postTransaction(
-                new Address("fromAddress"),
-                new Address("toAddress"),
-                100f)
-                .block();
+        ResponseDTO response = jobcoinApi.postTransaction(transaction).block();
 
         assertEquals(expectedResponse, response);
     }
 
     @Test(expected = Exception.class)
     public void postTransaction_exception() {
+        Transaction transaction = new Transaction(new Address("fromAddress"), new Address("toAddress"), 10f);
+
         mockWebServer.enqueue(
                 new MockResponse()
                         .setResponseCode(422)
@@ -99,10 +118,6 @@ public class JobcoinAPITest {
                         .setBody("{\"error\": \"insufficient funds\"}")
         );
 
-        jobcoinApi.postTransaction(
-                new Address("fromAddress"),
-                new Address("toAddress"),
-                100f)
-                .block();
+        jobcoinApi.postTransaction(transaction).block();
     }
 }

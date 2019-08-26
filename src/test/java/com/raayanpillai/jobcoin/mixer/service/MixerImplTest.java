@@ -1,7 +1,6 @@
 package com.raayanpillai.jobcoin.mixer.service;
 
 import com.raayanpillai.jobcoin.mixer.dto.ErrorDTO;
-import com.raayanpillai.jobcoin.mixer.dto.ResponseDTO;
 import com.raayanpillai.jobcoin.mixer.exception.MixTransferException;
 import com.raayanpillai.jobcoin.mixer.model.Address;
 import com.raayanpillai.jobcoin.mixer.model.DepositAddress;
@@ -22,7 +21,6 @@ import java.util.Collections;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyFloat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
@@ -70,12 +68,12 @@ public class MixerImplTest {
         DepositAddress depositAddress = new DepositAddress("testDeposit",
                 LocalDateTime.now().plusSeconds(expiresInSeconds));
 
-        given(transfer.watchAndMove(any(Transaction.class), any(Duration.class), any(Duration.class)))
-                .willReturn(Flux.just(new ResponseDTO("OK")));
+        given(transfer.watchAndTransact(any(Transaction.class), any(Duration.class), any(Duration.class)))
+                .willReturn(Flux.just(true));
 
         mixer.monitorDeposit(mixRequest, depositAddress);
 
-        then(executor).should(times(1)).scheduleWithdrawal(any(Address.class), anyFloat());
+        then(executor).should(times(1)).scheduleTransaction(any(Transaction.class));
     }
 
     @Test
@@ -84,7 +82,7 @@ public class MixerImplTest {
         DepositAddress depositAddress = new DepositAddress("testDeposit",
                 LocalDateTime.now().plusSeconds(expiresInSeconds));
 
-        given(transfer.watchAndMove(any(Transaction.class), any(Duration.class), any(Duration.class)))
+        given(transfer.watchAndTransact(any(Transaction.class), any(Duration.class), any(Duration.class)))
                 .willReturn(Flux.error(new MixTransferException(new ErrorDTO("Balance insufficient"))));
 
         mixer.monitorDeposit(mixRequest, depositAddress);
@@ -102,7 +100,6 @@ public class MixerImplTest {
 
         mixer.executeMix(mixRequest);
 
-        then(executor).should(times(3))
-                .scheduleWithdrawal(any(Address.class), anyFloat());
+        then(executor).should(times(3)).scheduleTransaction(any(Transaction.class));
     }
 }

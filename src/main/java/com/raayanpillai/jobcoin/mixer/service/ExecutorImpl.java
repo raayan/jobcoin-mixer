@@ -1,6 +1,5 @@
 package com.raayanpillai.jobcoin.mixer.service;
 
-import com.raayanpillai.jobcoin.mixer.model.Address;
 import com.raayanpillai.jobcoin.mixer.model.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,32 +16,35 @@ public class ExecutorImpl implements Executor {
 
     private final Scheduler scheduler;
     private final Transfer transfer;
-    private final Address houseAddress;
     private final Random random;
     private final long minDelay;
     private final long maxDelay;
 
-    public ExecutorImpl(Transfer transfer, Scheduler scheduler, Address houseAddress,
+    public ExecutorImpl(Transfer transfer, Scheduler scheduler,
                         @Value("${mixer.delay.min}") long minDelay, @Value("${mixer.delay.max}") long maxDelay) {
         this.transfer = transfer;
         this.scheduler = scheduler;
-        this.houseAddress = houseAddress;
         this.random = new Random();
         this.minDelay = minDelay;
         this.maxDelay = maxDelay;
     }
 
+    /**
+     * Schedules a transaction to be executed in the future
+     *
+     * @param transaction
+     */
     @Override
-    public void scheduleWithdrawal(Address toAddress, Float amount) {
+    public void scheduleTransaction(Transaction transaction) {
         // Some random delay
         long delay = minDelay + (long) (random.nextFloat() * (maxDelay - minDelay));
 
         Scheduler.Worker worker = scheduler.createWorker();
 
-        logger.info("Scheduling Transfer {} from house to {} in {} second(s)", amount, toAddress.getAddress(), delay);
+        logger.info("Scheduling {} in {} second(s)", transaction, delay);
         worker.schedule(() -> {
-            logger.info("Transferring {} from house to {}", amount, toAddress.getAddress());
-            transfer.move(new Transaction(houseAddress, toAddress, amount));
+            logger.info("Executing {}", transaction);
+            transfer.transact(transaction);
         }, delay, TimeUnit.SECONDS);
     }
 }

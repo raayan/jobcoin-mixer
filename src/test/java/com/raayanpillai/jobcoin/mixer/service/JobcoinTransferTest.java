@@ -1,13 +1,9 @@
 package com.raayanpillai.jobcoin.mixer.service;
 
-import com.raayanpillai.jobcoin.mixer.dto.AddressInfoDTO;
-import com.raayanpillai.jobcoin.mixer.dto.ErrorDTO;
-import com.raayanpillai.jobcoin.mixer.dto.ResponseDTO;
-import com.raayanpillai.jobcoin.mixer.exception.JobcoinTransactionException;
 import com.raayanpillai.jobcoin.mixer.exception.MixTransferException;
 import com.raayanpillai.jobcoin.mixer.model.Address;
 import com.raayanpillai.jobcoin.mixer.model.Transaction;
-import com.raayanpillai.jobcoin.mixer.repository.JobcoinAPI;
+import com.raayanpillai.jobcoin.mixer.repository.JobcoinExchange;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,11 +15,9 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.Duration;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyFloat;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(SpringRunner.class)
@@ -35,13 +29,13 @@ public class JobcoinTransferTest {
     private Transaction transaction;
 
     @MockBean
-    private JobcoinAPI jobcoinAPI;
+    private JobcoinExchange jobcoinExchange;
 
     private JobcoinTransfer jobcoinTransfer;
 
     @Before
     public void setUp() throws Exception {
-        jobcoinTransfer = new JobcoinTransfer(jobcoinAPI);
+        jobcoinTransfer = new JobcoinTransfer(jobcoinExchange);
         fromAddress = new Address("fromAddress");
         toAddress = new Address("toAddress");
         amount = 100F;
@@ -53,30 +47,29 @@ public class JobcoinTransferTest {
     }
 
     @Test
-    public void move() {
-        given(jobcoinAPI.postTransaction(any(Address.class), any(Address.class), anyFloat()))
-                .willReturn(Mono.just(new ResponseDTO("OK")));
+    public void transact_sucess_true() {
+        given(jobcoinExchange.submitTransaction(any(Transaction.class)))
+                .willReturn(Mono.just(true));
 
-        Boolean result = jobcoinTransfer.move(transaction);
+        Boolean result = jobcoinTransfer.transact(transaction);
 
         assertTrue(result);
     }
 
     @Test
-    public void move_transactionException() {
-        given(jobcoinAPI.postTransaction(any(Address.class), any(Address.class), anyFloat()))
-                .willReturn(Mono.error(new JobcoinTransactionException(new ErrorDTO("INSUFFICIENT FUNDS"))));
+    public void transact_failed_false() {
+        given(jobcoinExchange.submitTransaction(any(Transaction.class)))
+                .willReturn(Mono.just(false));
 
-        Boolean result = jobcoinTransfer.move(transaction);
+        Boolean result = jobcoinTransfer.transact(transaction);
 
         assertFalse(result);
     }
 
     @Test
     public void getBalance() {
-        given(jobcoinAPI.getAddressInfo(any(Address.class)))
-                .willReturn(Mono.just(new AddressInfoDTO(amount, new ArrayList<>())));
-
+        given(jobcoinExchange.getBalance(any(Address.class)))
+                .willReturn(Mono.just(amount));
 
         Float result = jobcoinTransfer.getBalance(fromAddress);
 
@@ -84,38 +77,28 @@ public class JobcoinTransferTest {
     }
 
     @Test
-    public void getMonoBalance() {
-        given(jobcoinAPI.getAddressInfo(any(Address.class)))
-                .willReturn(Mono.just(new AddressInfoDTO(amount, new ArrayList<>())));
-
-        Mono<Float> result = jobcoinTransfer.getMonoBalance(fromAddress);
-
-        assertEquals(amount, result.block());
-    }
-
-    @Test
     public void watchAndMove_sufficientFunds_moveFunds() {
-        given(jobcoinAPI.getAddressInfo(any(Address.class)))
-                .willReturn(Mono.just(new AddressInfoDTO(amount, new ArrayList<>())));
+        given(jobcoinExchange.getBalance(any(Address.class)))
+                .willReturn(Mono.just(amount));
 
-        given(jobcoinAPI.postTransaction(any(Address.class), any(Address.class), anyFloat()))
-                .willReturn(Mono.just(new ResponseDTO("OK")));
+        given(jobcoinExchange.submitTransaction(any(Transaction.class)))
+                .willReturn(Mono.just(true));
 
-        Flux<ResponseDTO> result = jobcoinTransfer.watchAndMove(transaction, Duration.ofSeconds(1), Duration.ofSeconds(3));
+        Flux<Boolean> result = jobcoinTransfer.watchAndTransact(transaction, Duration.ofSeconds(1), Duration.ofSeconds(3));
 
         StepVerifier.create(result)
                 .expectSubscription()
                 .expectNoEvent(Duration.ofSeconds(1))
-                .expectNext(new ResponseDTO("OK"))
+                .expectNext(true)
                 .verifyComplete();
     }
 
     @Test
     public void watchAndMove_insufficientFunds_await() {
-        given(jobcoinAPI.getAddressInfo(any(Address.class)))
-                .willReturn(Mono.just(new AddressInfoDTO(0f, new ArrayList<>())));
+        given(jobcoinExchange.getBalance(any(Address.class)))
+                .willReturn(Mono.just(0f));
 
-        Flux<ResponseDTO> result = jobcoinTransfer.watchAndMove(transaction, Duration.ofSeconds(1), Duration.ofSeconds(3));
+        Flux<Boolean> result = jobcoinTransfer.watchAndTransact(transaction, Duration.ofSeconds(1), Duration.ofSeconds(3));
 
         StepVerifier.create(result)
                 .expectSubscription()
@@ -126,18 +109,19 @@ public class JobcoinTransferTest {
 
     @Test
     public void watchAndMove_transferFailure_error() {
-        given(jobcoinAPI.getAddressInfo(any(Address.class)))
-                .willReturn(Mono.just(new AddressInfoDTO(amount, new ArrayList<>())));
+        given(jobcoinExchange.getBalance(any(Address.class)))
+                .willReturn(Mono.just(amount));
 
-        given(jobcoinAPI.postTransaction(any(Address.class), any(Address.class), anyFloat()))
-                .willReturn(Mono.error(new JobcoinTransactionException(new ErrorDTO("INSUFFICIENT FUNDS"))));
+        given(jobcoinExchange.submitTransaction(any(Transaction.class)))
+                .willReturn(Mono.just(false));
 
-        Flux<ResponseDTO> result = jobcoinTransfer.watchAndMove(transaction, Duration.ofSeconds(1), Duration.ofSeconds(3));
+        Flux<Boolean> result = jobcoinTransfer.watchAndTransact(transaction, Duration.ofSeconds(1), Duration.ofSeconds(3));
 
         StepVerifier.create(result)
                 .expectSubscription()
                 .expectNoEvent(Duration.ofSeconds(1))
-                .expectError(JobcoinTransactionException.class)
+                .expectNext(false)
+                .expectComplete()
                 .verify();
     }
 }

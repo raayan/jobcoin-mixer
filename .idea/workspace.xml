@@ -2,18 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a28dcf73-defc-43b0-9937-c4a33411e384" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/MixTransferException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/controller/MixerControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/Exchange.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinExchange.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/MixerIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinExchangeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/controller/MixerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/controller/MixerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/JobcoinException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/JobcoinException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/MixException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/MixException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/MixRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/MixRequestException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/MixerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/MixerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/controller/JobcoinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/controller/JobcoinController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/MixTransferException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/MixTransferException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/model/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/model/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Executor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransfer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/MixerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/MixerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Transfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Transfer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/MixerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/MixerApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPITest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransferTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransferTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/MixerImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/MixerImplTest.java" afterDir="false" />
@@ -88,15 +94,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/JobcoinException.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="7" selection-start-column="7" selection-end-column="7" />
+            <state relative-caret-position="178">
+              <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
               <folding>
-                <element signature="e#355#356#0" expanded="true" />
-                <element signature="e#386#387#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/MixerConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="56" column="15" selection-start-line="56" selection-start-column="15" selection-end-line="56" selection-end-column="15" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1154#1179#1" expanded="true" />
+                <element signature="e#1876#1896#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPITest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="81" selection-start-line="81" selection-end-line="81" />
             </state>
           </provider>
         </entry>
@@ -107,8 +135,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Interface" />
         <option value="JUnit4 Test Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -131,21 +159,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/config/TestConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/dto/ErrorDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/jobcoin/JobcoinException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/jobcoin/JobcoinTransactionException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/jobcoin/JobcoinRequestException.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/transfer/JobcoinTransferTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/MixService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/transfer/JobcoinTransfer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/JobcoinMixer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/controller/MixController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/model/MixDetail.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/dto/MixRequestDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/controller/GlobalExceptionHandler.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/MixerApplicationTests.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/controller/JobcoinController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/SwaggerConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/JobcoinConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/jobcoin/JobcoinAPI.java" />
@@ -160,28 +178,38 @@
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/FluxJobcoinTransfer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/RXJobcoinTransfer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/JobcoinConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Executor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/MixExecutor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/model/Expires.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/JobcoinExecutor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Mixer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/MixerConfig.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Transfer.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransferTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/MixTransferException.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImplTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/MixerImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/MixerImplTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransfer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/controller/MixerController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/controller/MixerControllerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/JobcoinException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/MixException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/exception/MixRequestException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Executor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImplTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/MixerIntegrationTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/MixerApplicationTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/model/Transaction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/MixerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/controller/JobcoinController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinRepositoryTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinExchangeTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinExchange.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/Exchange.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Transfer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransfer.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/MixerImplTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransferTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/MixerConfig.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPITest.java" />
       </list>
     </option>
   </component>
@@ -259,15 +287,6 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="mixer" type="462c0819:PsiDirectoryNode" />
-              <item name="exception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mixer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jobcoin-mixer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mixer" type="462c0819:PsiDirectoryNode" />
               <item name="repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -327,12 +346,7 @@
             </path>
             <path>
               <item name="mixer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jobcoin-mixer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mixer" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -357,11 +371,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.raayanpillai.jobcoin.mixer.repository" />
       <recent name="com.raayanpillai.jobcoin.mixer.controller" />
       <recent name="com.raayanpillai.jobcoin.mixer.service" />
       <recent name="com.raayanpillai.jobcoin.mixer.util" />
       <recent name="com.raayanpillai.jobcoin.mixer.transfer" />
-      <recent name="com.raayanpillai.jobcoin.mixer.jcapi" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.raayanpillai.jobcoin.mixer.exception" />
@@ -393,25 +407,6 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.All in mixer.test">
-    <configuration name="jobcoin-mixer [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="All in mixer.test" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="mixer.test" />
       <extension name="net.ashald.envfile">
@@ -428,6 +423,95 @@
       <option name="MAIN_CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JobcoinAPITest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mixer.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.raayanpillai.jobcoin.mixer.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.raayanpillai.jobcoin.mixer.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.raayanpillai.jobcoin.mixer.repository.JobcoinAPITest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JobcoinAPITest.getTransactions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mixer.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.raayanpillai.jobcoin.mixer.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.raayanpillai.jobcoin.mixer.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.raayanpillai.jobcoin.mixer.repository.JobcoinAPITest" />
+      <option name="METHOD_NAME" value="getTransactions" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JobcoinExchangeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mixer.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.raayanpillai.jobcoin.mixer.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.raayanpillai.jobcoin.mixer.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.raayanpillai.jobcoin.mixer.repository.JobcoinExchangeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JobcoinExchangeTest.submitTransaction_response_true" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mixer.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.raayanpillai.jobcoin.mixer.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.raayanpillai.jobcoin.mixer.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.raayanpillai.jobcoin.mixer.repository.JobcoinExchangeTest" />
+      <option name="METHOD_NAME" value="submitTransaction_response_true" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JobcoinTransferTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mixer.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.raayanpillai.jobcoin.mixer.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.raayanpillai.jobcoin.mixer.service" />
+      <option name="MAIN_CLASS_NAME" value="com.raayanpillai.jobcoin.mixer.service.JobcoinTransferTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="PARAMETERS" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -453,13 +537,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.jobcoin-mixer [build]" />
       <item itemvalue="JUnit.All in mixer.test" />
       <item itemvalue="Spring Boot.MixerApplication" />
+      <item itemvalue="JUnit.JobcoinExchangeTest" />
+      <item itemvalue="JUnit.JobcoinExchangeTest.submitTransaction_response_true" />
+      <item itemvalue="JUnit.JobcoinAPITest.getTransactions" />
+      <item itemvalue="JUnit.JobcoinAPITest" />
+      <item itemvalue="JUnit.JobcoinTransferTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.jobcoin-mixer [build]" />
+        <item itemvalue="JUnit.JobcoinAPITest" />
+        <item itemvalue="JUnit.JobcoinTransferTest" />
+        <item itemvalue="JUnit.JobcoinExchangeTest" />
+        <item itemvalue="JUnit.JobcoinAPITest.getTransactions" />
+        <item itemvalue="JUnit.JobcoinExchangeTest.submitTransaction_response_true" />
       </list>
     </recent_temporary>
   </component>
@@ -475,7 +567,7 @@
       <updated>1566429473001</updated>
       <workItem from="1566429474407" duration="59065000" />
       <workItem from="1566695652811" duration="212000" />
-      <workItem from="1566695883693" duration="36123000" />
+      <workItem from="1566695883693" duration="42699000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1566429939149</created>
@@ -533,43 +625,50 @@
       <option name="project" value="LOCAL" />
       <updated>1566774956698</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Some generification and tests, better error handling on the mixer">
+      <created>1566781876251</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1566781876251</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MixerImplTest - 2019.08.25 at 20h 38m 36s.xml">
-      <configuration name="MixerImplTest" configurationId="JUnit" />
+    <history-entry file="JobcoinExchangeTest - 2019.08.25 at 22h 29m 12s.xml">
+      <configuration name="JobcoinExchangeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MixerImplTest - 2019.08.25 at 20h 39m 35s.xml">
-      <configuration name="MixerImplTest" configurationId="JUnit" />
+    <history-entry file="JobcoinAPITest - 2019.08.25 at 22h 29m 17s.xml">
+      <configuration name="JobcoinAPITest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MixerImplTest - 2019.08.25 at 20h 39m 47s.xml">
-      <configuration name="MixerImplTest" configurationId="JUnit" />
+    <history-entry file="JobcoinAPITest - 2019.08.25 at 22h 30m 03s.xml">
+      <configuration name="JobcoinAPITest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MixerImplTest - 2019.08.25 at 20h 40m 00s.xml">
-      <configuration name="MixerImplTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MixerImplTest - 2019.08.25 at 20h 45m 16s.xml">
-      <configuration name="MixerImplTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MixerImplTest - 2019.08.25 at 20h 46m 42s.xml">
-      <configuration name="MixerImplTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MixerImplTest - 2019.08.25 at 20h 48m 17s.xml">
-      <configuration name="MixerImplTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MixerImplTest - 2019.08.25 at 20h 48m 45s.xml">
-      <configuration name="MixerImplTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_mixer_test - 2019.08.25 at 20h 52m 45s.xml">
+    <history-entry file="All_in_mixer_test - 2019.08.25 at 22h 41m 55s.xml">
       <configuration name="All in mixer.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_mixer_test - 2019.08.25 at 21h 07m 20s.xml">
+    <history-entry file="JobcoinTransferTest - 2019.08.25 at 22h 44m 00s.xml">
+      <configuration name="JobcoinTransferTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JobcoinTransferTest - 2019.08.25 at 22h 45m 44s.xml">
+      <configuration name="JobcoinTransferTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JobcoinTransferTest - 2019.08.25 at 22h 45m 57s.xml">
+      <configuration name="JobcoinTransferTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_mixer_test - 2019.08.25 at 22h 47m 24s.xml">
       <configuration name="All in mixer.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JobcoinAPITest - 2019.08.25 at 22h 55m 41s.xml">
+      <configuration name="JobcoinAPITest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JobcoinAPITest - 2019.08.25 at 22h 55m 54s.xml">
+      <configuration name="JobcoinAPITest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95400000" />
+    <option name="totallyTimeSpent" value="101976000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -664,101 +763,19 @@
     <MESSAGE value="Transfer component built and tested, some restructuring too" />
     <MESSAGE value="Mix requests being processed, addresses being generated" />
     <MESSAGE value="Mixer complete, some tests added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mixer complete, some tests added" />
+    <MESSAGE value="Some generification and tests, better error handling on the mixer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some generification and tests, better error handling on the mixer" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/mixer$All_in_mixer_test.ic" NAME="All in mixer.test Coverage Results" MODIFIED="1566781619814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/mixer$All_in_mixer_test.ic" NAME="All in mixer.test Coverage Results" MODIFIED="1566788437205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/mixer$MixerImplTest.ic" NAME="MixerImplTest Coverage Results" MODIFIED="1566779984711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.raayanpillai.jobcoin.mixer.service.*</FILTER>
     </SUITE>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///private/var/folders/g8/fcnh8m3n4m309dy74s92h1tw0000gn/T/modules.uml">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>MODULES</ID>
-          <OriginalElement />
-          <nodes />
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="0.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/sequenceDiagram.mmd">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/MixerApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/WebConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="14" lean-forward="true" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/src.zip!/java/util/Date.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="130" column="13" selection-start-line="130" selection-start-column="13" selection-end-line="130" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/model/Address.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-          <folding>
-            <element signature="e#566#567#0" expanded="true" />
-            <element signature="e#610#611#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/model/MixRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1152#1153#0" expanded="true" />
-            <element signature="e#1232#1233#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/util/JobcoinAddressGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
-          <folding>
-            <element signature="e#519#520#0" expanded="true" />
-            <element signature="e#569#570#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/util/JobcoinAddressGeneratorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/SwaggerConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -856,30 +873,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/controller/JobcoinController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/model/Expires.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="32" column="27" lean-forward="true" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -904,131 +901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/MixerApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#261#262#0" expanded="true" />
-            <element signature="e#328#329#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Transfer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/dto/AddressInfoDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#426#427#0" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransferTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1867">
-          <caret line="141" column="5" lean-forward="true" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/model/Transaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Executor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="45" column="36" lean-forward="true" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/MixerImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="86" column="17" lean-forward="true" selection-start-line="86" selection-start-column="17" selection-end-line="86" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/MixerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="61" column="72" selection-start-line="61" selection-start-column="72" selection-end-line="61" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/MixerConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2834#2835#0" expanded="true" />
-            <element signature="e#2888#2889#0" expanded="true" />
-            <element signature="e#3014#3015#0" expanded="true" />
-            <element signature="e#3057#3058#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransfer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="82" column="64" selection-start-line="82" selection-start-column="64" selection-end-line="82" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1122,6 +994,236 @@
             <element signature="e#355#356#0" expanded="true" />
             <element signature="e#386#387#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Executor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="57" column="48" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/MixerIntegrationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/MixerApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/WebConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/2.1.7.RELEASE/2c9d3e2c6ea3cb435e99e2973009636b62a9d816/spring-boot-autoconfigure-2.1.7.RELEASE.jar!/org/springframework/boot/autoconfigure/web/reactive/function/client/WebClientAutoConfiguration.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/model/Transaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+          <folding>
+            <element signature="e#794#795#0" expanded="true" />
+            <element signature="e#830#831#0" expanded="true" />
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1351#1352#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/dto/AddressInfoDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#426#427#0" expanded="true" />
+            <element signature="e#456#457#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/Exchange.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinExchangeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/MixerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding>
+            <element signature="e#261#262#0" expanded="true" />
+            <element signature="e#328#329#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/MixerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/ExecutorImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#790#810#1" expanded="true" />
+            <element signature="e#834#854#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/MixerImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1065">
+          <caret line="71" column="42" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/Transfer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinExchange.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransferTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/controller/JobcoinController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/service/JobcoinTransfer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="36" column="39" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1172#1173#0" expanded="true" />
+            <element signature="e#1249#1250#0" expanded="true" />
+            <element signature="e#1638#1639#0" expanded="true" />
+            <element signature="e#1695#1696#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-test/5.1.9.RELEASE/754839b15a0a21e1ef96b82c1e2a8b883d530bca/spring-test-5.1.9.RELEASE-sources.jar!/org/springframework/test/web/reactive/server/WebTestClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/raayanpillai/jobcoin/mixer/config/MixerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="56" column="15" selection-start-line="56" selection-start-column="15" selection-end-line="56" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1154#1179#1" expanded="true" />
+            <element signature="e#1876#1896#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/raayanpillai/jobcoin/mixer/repository/JobcoinAPITest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
         </state>
       </provider>
     </entry>

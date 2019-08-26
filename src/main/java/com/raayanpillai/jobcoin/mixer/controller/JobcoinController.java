@@ -2,12 +2,15 @@ package com.raayanpillai.jobcoin.mixer.controller;
 
 import com.raayanpillai.jobcoin.mixer.dto.*;
 import com.raayanpillai.jobcoin.mixer.model.Address;
+import com.raayanpillai.jobcoin.mixer.model.Transaction;
 import com.raayanpillai.jobcoin.mixer.repository.JobcoinAPI;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * A pass-through for interacting with the Jobcoin API
@@ -26,17 +29,13 @@ public class JobcoinController {
     @GetMapping(path = "/addresses/{address}")
     @ResponseBody
     public AddressInfoDTO getAddressInfo(@PathVariable String address) {
-        AddressInfoDTO addressInfoDTO = jobcoinApi.getAddressInfo(new Address(address)).block();
-
-        return addressInfoDTO;
+        return jobcoinApi.getAddressInfo(new Address(address)).block();
     }
 
     @GetMapping(path = "/transactions")
     @ResponseBody
-    public TransactionDTO[] getTransactions() {
-        TransactionDTO[] transactionDTOS = jobcoinApi.getTransactions().block();
-
-        return transactionDTOS;
+    public List<TransactionDTO> getTransactions() {
+        return jobcoinApi.getTransactions().collectList().block();
     }
 
     @ApiResponses({
@@ -46,12 +45,11 @@ public class JobcoinController {
     @PostMapping(path = "/transactions")
     @ResponseBody
     public ResponseDTO postTransaction(@RequestBody TransactionRequestDTO transactionRequestDTO) {
-        ResponseDTO responseDTO = jobcoinApi.postTransaction(
+        Transaction transaction = new Transaction(
                 new Address(transactionRequestDTO.getFromAddress()),
                 new Address(transactionRequestDTO.getToAddress()),
-                transactionRequestDTO.getAmount())
-                .block();
+                transactionRequestDTO.getAmount());
 
-        return responseDTO;
+        return jobcoinApi.postTransaction(transaction).block();
     }
 }

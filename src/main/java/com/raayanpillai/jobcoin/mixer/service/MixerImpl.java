@@ -54,7 +54,7 @@ public class MixerImpl implements Mixer {
         Transaction transaction = new Transaction(houseAddress, depositAddress, mixRequest.getAmount());
 
         logger.info("Checking {} for {} seconds", depositAddress, watchDuration.getSeconds());
-        transfer.watchAndMove(transaction, Duration.ofSeconds(1), watchDuration)
+        transfer.watchAndTransact(transaction, Duration.ofSeconds(1), watchDuration)
                 .subscribe(responseDTO -> {
                     logger.info("Funds moved from {} to {}", depositAddress, houseAddress);
                     executeMix(mixRequest);
@@ -68,14 +68,14 @@ public class MixerImpl implements Mixer {
         Random random = new Random();
 
         int counter = 0;
-        for (Address address : mixRequest.getDestinationAddresses()) {
+        for (Address desinationAddress : mixRequest.getDestinationAddresses()) {
             counter++;
             float withdrawAmount = (counter < mixRequest.getDestinationAddresses().size()) ?
                     mixBalance * random.nextFloat() : mixBalance;
 
             mixBalance -= withdrawAmount;
 
-            executor.scheduleWithdrawal(address, withdrawAmount);
+            executor.scheduleTransaction(new Transaction(houseAddress, desinationAddress, withdrawAmount));
         }
 
         logger.info("Mix balance for {} is {}", mixRequest, mixBalance);

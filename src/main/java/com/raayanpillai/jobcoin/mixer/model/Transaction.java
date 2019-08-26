@@ -1,5 +1,7 @@
 package com.raayanpillai.jobcoin.mixer.model;
 
+import java.util.Objects;
+
 public class Transaction {
     private Address fromAddress;
     private Address toAddress;
@@ -33,6 +35,21 @@ public class Transaction {
 
     public void setAmount(Float amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return Objects.equals(fromAddress, that.fromAddress) &&
+                Objects.equals(toAddress, that.toAddress) &&
+                Objects.equals(amount, that.amount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fromAddress, toAddress, amount);
     }
 
     @Override
