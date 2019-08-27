@@ -1,8 +1,8 @@
 # Raayan Pillai Jobcoin Mixer
 
-The mixer application is live at [jobcoin.raayanpillai.com](jobcoin.raayanpillai.com)
+The mixer application is live at [jobcoin.raayanpillai.com](https://jobcoin.raayanpillai.com)
 
-The rest endpoints are documented with [swagger](jobcoin.raayanpillai.com/swagger) and can be used there.
+The rest endpoints are documented with [swagger](https://jobcoin.raayanpillai.com/swagger) and can be used there.
 
 The code repository for the webapp can be found [here](https://github.com/raayanpillai/jobcoin-mixer-webapp).
 
