@@ -32,7 +32,7 @@ To start the JobCoin Mixer this will spin up a webserver on port 8080.
 
 Swagger documentation at http://localhost:8080/swagger
 
-Webapp at http://localhost:8080
+Webapp at http://localhost:8080 
 
 Alternatively (given that you've built already): 
 ```bash
@@ -40,6 +40,53 @@ java -jar ./build/libs/mixer-X.Y.Z-SNAPSHOT.jar
 ```
 
 If using **Windows** replace all instances of `./gradlew <some-commands>` with `gradlew.bat <some-commands>`
+
+### Deploying Server and Webapp
+> What I do to get this up and running on my server
+
+To make it simpler and put the focus on the webserver, I've packaged the UI with the Server, in the `main/resources/static` folder.
+
+If you wanted to update the UI and Webserver separately do the following
+
+##### 1 Clone the projects next to eachother 
+- https://github.com/raayanpillai/jobcoin-mixer
+- https://github.com/raayanpillai/jobcoin-mixer-webapp
+```bash
+/some_folder/jobcoin-mixer
+/some_folder/jobcoin-mixer-webapp
+```
+
+##### 2 Delete the packaged webapp
+
+`rm -rv /some_folder/jobcoin-mixer/src/main/resources/static/*`
+
+##### 3a Build the webapp
+```bash
+cd /some_folder/jobcoin-mixer-webapp
+./gradlew npmInstall # This uses gradle to install npm/nodejs
+./gradlew appBuild # This builds the webapp with npm
+./gradlew appCopy # This copies the webapp to ../jobcoin-mixer/src/main/resources/static
+```
+##### 3b Develop the webapp with a running server
+Skip step **3a** here
+```bash
+cd /some_folder/jobcoin-mixer-webapp
+./gradlew npmInstall
+./gradlew appStart # This should start a development server on port 3000 proxied to port 8080
+```
+The webapp will be on port https://yourhost:3000 and the swagger at https://yourhost:8080/swagger (after you complete step 4). 
+Changes to your *.tsx will be compiled automatically and be reflected at port 3000.
+##### 4 Build the server
+```bash
+cd /some_folder/jobcoin-mixer
+./gradlew run
+```
+
+##### 5 Done
+
+Head to https://yourhost:8080 and you should see the webapp and the swagger will be at https://yourhost:8080/swagger
+
+
 
 ## Documentation
 
