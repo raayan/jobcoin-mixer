@@ -105,8 +105,8 @@ X[R[n]] = some random split of X
 T[R[n]] = some random time
 TTD = TimeTillDeposit
 
-D -> Q (at T0)
-Q -> H (at T0 + TTD)
+D --X--> Q (at T0)
+Q --X--> H (at T0 + TTD)
 H --X[R[1]]--> A (at T0 + TTD + T[R[1]])
 H --X[R[2]]--> B (at T0 + TTD + T[R[2]])
 H --X[R[3]]--> C (at T0 + TTD + T[R[3]])
@@ -120,7 +120,7 @@ I’ll discuss some of the weak points of my application here
 	- To combat this I would have liked to implement some feature that allowed the mixer to evaluate the current state of mixees and postpone doling out coins until it could assure your coins were well interspersed with other transactions. 
 
 ##### Technical
-- If someone were to see both your request to the the mixer and its response in plain test they would know your **clean wallets**and when you plan to deposit into the mixer by. This would couple your clean wallets to your dirty wallets thus nullifying and privacy that mixing would allow.
+- If someone were to see both your request to the the mixer and its response in plain test they would know your **clean wallets** and when you plan to deposit into the mixer by. This would couple your clean wallets to your dirty wallets thus nullifying and privacy that mixing would allow.
 	- It seems that many mixers these days are on the TOR network which allows for some more security. Ensuring that requests are made in HTTPS is a step in the right direction.
 	
 - This application is stateful, this is one of things I would first address given more time. If the application terminates unexpectedly a few things could go wrong. If it were monitoring a wallet for a deposit, on startup the user may have placed coins in the deposit address and the application would just ignore those funds and the user would have been robbed. If the application terminated while some scheduled transfers had not been executed those transfers would be lost as well.
