@@ -62,28 +62,35 @@ public class MixerImpl implements Mixer {
         // Compute duration between now and when the depositAddress expires
         Duration watchDuration = Duration.between(LocalDateTime.now(), depositAddress.getExpiryDate());
         Transaction transaction = new Transaction(depositAddress, houseAddress, mixRequest.getAmount());
-
         logger.info("Checking {} for {} seconds", depositAddress, watchDuration.getSeconds());
         return transfer.watchAndTransact(transaction, Duration.ofSeconds(1), watchDuration)
                 .map(success -> executeMix(mixRequest))
                 .onErrorReturn(MixTransferException.class, false);
     }
 
+    /**
+     * Improved the random algorithm to make each wallet have a minimum-bounded-chunk of your change
+     * but also added a better random modifier
+     */
     public Boolean executeMix(MixRequest mixRequest) {
-        float mixBalance = mixRequest.getAmount();
         Random random = new Random();
 
-        int counter = 0;
-        for (Address desinationAddress : mixRequest.getDestinations()) {
-            counter++;
-            float withdrawAmount = (counter < mixRequest.getDestinations().size()) ?
-                    mixBalance * random.nextFloat() : mixBalance;
-            mixBalance -= withdrawAmount;
-
-            executor.scheduleTransaction(new Transaction(houseAddress, desinationAddress, withdrawAmount));
+        int deposits = mixRequest.getDestinations().size();
+        float initialDivision = mixRequest.getAmount() / (deposits + 1);
+        float[] randoms = new float[deposits];
+        float sumRandoms = 0;
+        for (int i = 0; i < deposits; i++) {
+            randoms[i] = random.nextFloat();
+            sumRandoms += randoms[i];
+        }
+        for (int i = 0; i < deposits; i++) {
+            float randomModifier = randoms[i] * (initialDivision / sumRandoms);
+            float minBoundedRandomChunk = initialDivision + randomModifier;
+            Address destinationAddress = mixRequest.getDestinations().get(i);
+            logger.info("Sending seeded piece {}, uniform random piece {}", minBoundedRandomChunk, minBoundedRandomChunk);
+            executor.scheduleTransaction(new Transaction(houseAddress, destinationAddress, minBoundedRandomChunk));
         }
 
-        logger.info("Mix balance for {} is {}", mixRequest, mixBalance);
         return true;
     }
 }
